@@ -1,0 +1,17 @@
+
+
+
+Read file from standard output
+get all holes
+	if there is #end or #start, set it accordingly.
+	Cannot have more than one end and start
+	Rooms need to have proper names
+	Create holes
+get all links
+	links between existing rooms
+	link rooms accordingly
+use bfs to find shortest paths
+	in a while loop starting from start, goes to next, if not visited before.
+	if greatest path_size < ant_number, use multiple paths
+send every ant through those paths
+write down the path of the ants
