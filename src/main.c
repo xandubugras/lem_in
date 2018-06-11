@@ -29,8 +29,10 @@ int	main(void)
 	rooms = load_rooms(&room_nbr, &str);
 	print_room_arr(rooms);
 	room_graph = create_graph(room_nbr);
-	link_rooms(room_graph, rooms);
+	link_rooms(room_graph, rooms, str);
 	print_graph(room_graph);
+	if (find_paths(room_graph, rooms))
+		return (1);
 	//link_rooms
 	//find_shortest_paths
 	//send_paths and write paths

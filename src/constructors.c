@@ -9,10 +9,11 @@ t_room	*new_room()
 	new->room_name = 0;
 	new->x = 0;
 	new->y = 0;
-	new->visited = 0;
+	new->visited = -1;
 	new->end = 0;
 	new->start = 0;
 	new->next = 0;
+	new->prev = 0;
 	new->code = 0;
 	return (new);
 }

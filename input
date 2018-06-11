@@ -1,13 +1,19 @@
 3
-A 5 0
 ##start
+A 5 0
 B 1 2
+C 9 3
+D 9 4
+E 9 5
+F 9 6
 ##end
-C 9 2
-D 5 4
+G 9 7
 A-B
-B-C
-B-A
-C-A
-B-C
+A-C
+A-D
+A-E
+B-F
+C-F
+F-G
+E-G
   

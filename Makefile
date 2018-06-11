@@ -14,8 +14,11 @@ NAME	= lem_in
 
 # src / obj files
 SRC		=	main.c \
+			queue.c \
 			constructors.c\
+			find_paths.c\
 			load_and_link.c
+
 			
 
 OBJ	= $(addprefix $(OBJDIR),$(SRC:.c=.o))

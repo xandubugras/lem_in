@@ -84,20 +84,19 @@ int		add_link(t_room **rooms, int **graph, char *str)
 	room_2 = find_room(rooms, room_name_2);
 	if (!room_1 || !room_2)
 		return (ft_printf_err("Unknown room\n"));
+	ft_printf("linking %s and %s\n", room_1->room_name, room_2->room_name);
 	graph[room_1->code][room_2->code] = 1;
 	graph[room_2->code][room_1->code] = 1;
 	return (0);
 }
 
-int		link_rooms(int **graph, t_room **rooms)
+int		link_rooms(int **graph, t_room **rooms, char *str)
 {
-	char	*str;
-
-	while (get_next_line(0, &str) == 1)
+	while (1)
 	{
-		if (!str)
-			break ;
 		add_link(rooms, graph, str);
+		if (get_next_line(0, &str) != 1)
+			break;
 	}
 	return (0);
 }
