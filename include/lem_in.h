@@ -12,6 +12,7 @@ typedef struct s_room
 	int			code;
 	char		end;
 	char		start;
+	char		full;
 	struct s_room	*next;
 	struct s_room	*prev;
 }		t_room;

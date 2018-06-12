@@ -81,7 +81,7 @@ int	*write_paths(t_room **rooms, t_room *end)
 		if (rooms[i++]->end == 2)
 			num_paths++;
 	paths = malloc(sizeof(int) * (num_paths + 1));
-	paths[num_paths] = 0;
+	paths[num_paths] = -2;
 	i = 0;
 	while (rooms[i] && num_paths > 0)
 	{
