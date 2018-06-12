@@ -124,6 +124,8 @@ int				ft_isalpha(int c);
 
 int				ft_isdigit(int c);
 
+int				ft_only_digits(char *str);
+
 int				ft_isdigit_sign(int c);
 
 int				ft_isalnum(int c);
