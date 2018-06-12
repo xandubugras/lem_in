@@ -35,7 +35,13 @@ void		print_rooms(t_room *root);
 
 int			link_rooms(int **graph, t_room **rooms, char *str);
 
-int	*find_paths(int **room_graph, t_room **rooms);
+int			*find_paths(int **room_graph, t_room **rooms);
+
+int			check_paths(int *paths);
+
+int			send_ants(int *paths, t_room **rooms, int ants);
+
+int			find_start_end(t_room **start, t_room **end, t_room **rooms);
 
 /*
 **-------------------------QUEUES----------------------

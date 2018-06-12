@@ -20,21 +20,20 @@ int	main(void)
 	char	*str;
 	int		room_nbr;
 	int		**room_graph;
+	int		*paths;
 
 	get_next_line(0, &str);
 	if ((num_ants = ft_atoi(str)) == 0 || !ft_only_digits(str))
 		return (ft_printf_err("Wrong farm size input\n"));
-	ft_printf("\nants: %d\n", num_ants);
+	ft_printf("%d\n", num_ants);
 	room_nbr = 0;
 	rooms = load_rooms(&room_nbr, &str);
-	print_room_arr(rooms);
+	//print_room_arr(rooms);
 	room_graph = create_graph(room_nbr);
 	link_rooms(room_graph, rooms, str);
-	print_graph(room_graph);
-	if (!find_paths(room_graph, rooms))
+	//print_graph(room_graph);
+	if (!(paths = find_paths(room_graph, rooms)))
 		return (1);
-	//send_ants(
-	//find_shortest_paths
-	//send_paths and write paths
+	send_ants(paths, rooms, num_ants);
 }
 

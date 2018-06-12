@@ -16,6 +16,8 @@ NAME	= lem_in
 SRC		=	main.c \
 			queue.c \
 			constructors.c\
+			helper.c\
+			send_ants.c\
 			find_paths.c\
 			load_and_link.c
 

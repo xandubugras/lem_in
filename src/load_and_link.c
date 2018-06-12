@@ -7,9 +7,15 @@ static int	handle_command(char *start_end, char *str)
 	if (!str)
 		return (1);
 	if (!ft_strcmp(str + 1, "#start"))
+	{
+		ft_printf("%s\n", str);
 		*start_end = 1;
+	}
 	else if (!ft_strcmp(str + 1, "#end"))
+	{
+		ft_printf("%s\n", str);
 		*start_end = -1;
+	}
 	else
 		*start_end = 0;
 	free(str);
@@ -51,9 +57,9 @@ t_room		**load_rooms(int *room_nbr, char **str)
 		(*str) = ft_strtrim((*str)); // free prev string at some point
 		if (!(*str))
 			break ;
-		ft_printf("input: %s.\n", (*str));
 		if ((*str)[0] == COMMAND_CHAR && !handle_command(&start_end, *str))
 			continue ;
+		ft_printf("%s\n", (*str));
 		if ((splt = ft_strsplit(*str, ' ')) == 0 || (splt[0] && !splt[1]))
 			break ;
 		if (splt[0] && splt[1] && splt[2] && (*room_nbr += 1))
@@ -74,7 +80,7 @@ int		add_link(t_room **rooms, int **graph, char *str)
 	int		i;
 
 	if (!*rooms || !str || !ft_strchr(str, '-'))
-		return (ft_printf("invalid input: %s\n", str));
+		return (1);
 	i = 0;
 	while (str[i] != '-')
 		i++;
@@ -84,7 +90,7 @@ int		add_link(t_room **rooms, int **graph, char *str)
 	room_2 = find_room(rooms, room_name_2);
 	if (!room_1 || !room_2)
 		return (ft_printf_err("Unknown room\n"));
-	ft_printf("linking %s and %s\n", room_1->room_name, room_2->room_name);
+	//ft_printf("linking %s and %s\n", room_1->room_name, room_2->room_name);
 	graph[room_1->code][room_2->code] = 1;
 	graph[room_2->code][room_1->code] = 1;
 	return (0);
@@ -97,6 +103,8 @@ int		link_rooms(int **graph, t_room **rooms, char *str)
 		add_link(rooms, graph, str);
 		if (get_next_line(0, &str) != 1)
 			break;
+		else
+			ft_printf("%s\n", str);
 	}
 	return (0);
 }
