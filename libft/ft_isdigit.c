@@ -16,3 +16,24 @@ int		ft_isdigit(int c)
 {
 	return (c <= '9' && c >= '0');
 }
+
+int		ft_only_digits(char *str)
+{
+	char *tmp;
+
+	if (!str)
+		return (0);
+	str = ft_strtrim(str);
+	tmp = str;
+	while (*str)
+	{
+		if (!ft_isdigit(*str))
+		{
+			free(tmp);
+			return (0);
+		}
+		str++;
+	}
+	free(tmp);
+	return (1);
+}

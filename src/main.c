@@ -22,8 +22,8 @@ int	main(void)
 	int		**room_graph;
 
 	get_next_line(0, &str);
-	if ((num_ants = ft_atoi(str)) == 0)
-		return (ft_printf_err("empty farm\n"));
+	if ((num_ants = ft_atoi(str)) == 0 || !ft_only_digits(str))
+		return (ft_printf_err("Wrong farm size input\n"));
 	ft_printf("\nants: %d\n", num_ants);
 	room_nbr = 0;
 	rooms = load_rooms(&room_nbr, &str);
