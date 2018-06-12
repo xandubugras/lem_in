@@ -92,3 +92,25 @@ int		ft_printf_err(char *format, ...)
 	va_end(arg_pointer);
 	return (printed_characters);
 }
+
+int		*ft_printf_err_zero(char *format, ...)
+{
+	va_list			arg_pointer;
+	int				printed_characters;
+
+	va_start(arg_pointer, format);
+	printed_characters = 0;
+	while (*format)
+	{
+		if (*format == '%')
+			ft_print_argument(arg_pointer, &format, &printed_characters);
+		else
+		{
+			ft_putchar_fd(*format, 2);
+			printed_characters++;
+		}
+		format++;
+	}
+	va_end(arg_pointer);
+	return (0);
+}

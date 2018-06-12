@@ -4,6 +4,7 @@
 
 typedef struct s_room
 {
+	int		len;
 	char		*room_name;
 	int			x;
 	int			y;
@@ -33,7 +34,7 @@ void		print_rooms(t_room *root);
 
 int			link_rooms(int **graph, t_room **rooms, char *str);
 
-int	find_paths(int **room_graph, t_room **rooms);
+int	*find_paths(int **room_graph, t_room **rooms);
 
 /*
 **-------------------------QUEUES----------------------

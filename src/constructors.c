@@ -15,6 +15,7 @@ t_room	*new_room()
 	new->next = 0;
 	new->prev = 0;
 	new->code = 0;
+	new->len = 0;
 	return (new);
 }
 

@@ -31,9 +31,9 @@ int	main(void)
 	room_graph = create_graph(room_nbr);
 	link_rooms(room_graph, rooms, str);
 	print_graph(room_graph);
-	if (find_paths(room_graph, rooms))
+	if (!find_paths(room_graph, rooms))
 		return (1);
-	//link_rooms
+	//send_ants(
 	//find_shortest_paths
 	//send_paths and write paths
 }
