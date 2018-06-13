@@ -79,6 +79,13 @@ int		walk_paths(t_room **rooms, int *paths)
 	return (reached_end);
 }
 
+/*
+**if there is a direct path (-3) it sends it all through it
+**otherwise it always moves the current ones in the maze, then adds new
+**decides which pipe to use based on the amount of ants to be sent
+**if there are more ants in start than the size of the empty path, it sends
+**if there are no empty paths, sends through the shortest
+*/
 int		send_ants(int *paths, t_room **rooms, int ants)
 {
 	int		min;

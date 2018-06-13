@@ -114,17 +114,3 @@ int		link_rooms(int **graph, t_room **rooms, char *str)
 	}
 	return (0);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
