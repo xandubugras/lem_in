@@ -2,10 +2,13 @@
 #define START 2
 #define END 3
 
-static int	handle_command(char *start_end, char *str)
+static int	handle_command(char *start_end, char *str, char *tmp)
 {
 	if (!str)
+	{
+		free(tmp);
 		return (1);
+	}
 	if (!ft_strcmp(str + 1, "#start"))
 	{
 		ft_printf("%s\n", str);
@@ -19,6 +22,7 @@ static int	handle_command(char *start_end, char *str)
 	else
 		*start_end = 0;
 	free(str);
+	free(tmp);
 	return (0);
 }
 
@@ -47,6 +51,7 @@ t_room		**load_rooms(int *room_nbr, char **str)
 {
 	char	start_end;
 	char	**splt;
+	char	*tmp;
 	t_room	*root;
 	t_room	**rooms;
 
@@ -54,18 +59,17 @@ t_room		**load_rooms(int *room_nbr, char **str)
 	root = 0;
 	while (get_next_line(0, str) == 1)
 	{
-		(*str) = ft_strtrim((*str)); // free prev string at some point
-		if (!(*str))
-			break ;
-		if ((*str)[0] == COMMAND_CHAR && !handle_command(&start_end, *str))
+		tmp = ft_strtrim((*str));
+		if (handle_empty_str(tmp, *str))
 			continue ;
-		ft_printf("%s\n", (*str));
-		if ((splt = ft_strsplit(*str, ' ')) == 0 || (splt[0] && !splt[1]))
+		if (tmp[0] == COMMAND_CHAR && !handle_command(&start_end, tmp, *str))
+			continue ;
+		if (((splt = ft_strsplit(tmp, ' ')) == 0 || (splt[0] && !splt[1])) && free_tmp_str_split(splt, tmp, 0))
 			break ;
-		if (splt[0] && splt[1] && splt[2] && (*room_nbr += 1))
+		if (ft_printf("%s\n", tmp) && splt[0] && splt[1] && splt[2] && (*room_nbr += 1))
 			add_room(&root, splt, start_end);
 		start_end = 0;
-		//free((*str));
+		free_tmp_str_split(splt, *str, tmp);
 	}
 	rooms = room_list_to_arr(root, *room_nbr);
 	return (rooms);
@@ -80,7 +84,7 @@ int		add_link(t_room **rooms, int **graph, char *str)
 	int		i;
 
 	if (!*rooms || !str || !ft_strchr(str, '-'))
-		return (1);
+		return (ft_printf_err("Unknown room\n"));
 	i = 0;
 	while (str[i] != '-')
 		i++;
@@ -90,9 +94,10 @@ int		add_link(t_room **rooms, int **graph, char *str)
 	room_2 = find_room(rooms, room_name_2);
 	if (!room_1 || !room_2)
 		return (ft_printf_err("Unknown room\n"));
-	//ft_printf("linking %s and %s\n", room_1->room_name, room_2->room_name);
 	graph[room_1->code][room_2->code] = 1;
 	graph[room_2->code][room_1->code] = 1;
+	free(room_name_1);
+	free(room_name_2);
 	return (0);
 }
 
@@ -101,6 +106,7 @@ int		link_rooms(int **graph, t_room **rooms, char *str)
 	while (1)
 	{
 		add_link(rooms, graph, str);
+		free(str);
 		if (get_next_line(0, &str) != 1)
 			break;
 		else

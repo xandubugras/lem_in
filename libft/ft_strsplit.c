@@ -38,3 +38,18 @@ char			**ft_strsplit(char const *s, char c)
 	str2[i] = 0;
 	return (str2);
 }
+
+void			free_split_str(char **splt)
+{
+	int	i;
+
+	if (!splt)
+		return ;
+	i = 0;
+	while (splt[i])
+	{
+		free(splt[i]);
+		i++;
+	}
+	free(splt);
+}

@@ -30,7 +30,7 @@ t_room	*add_room(t_room **root, char **cord, char start_end)
 	tmp = *root;
 	new = new_room();
 	new->next = tmp;
-	new->room_name = cord[0];
+	new->room_name = cord[0] ? ft_strdup(cord[0]) : 0;
 	new->x = cord[1] ? ft_atoi(cord[1]) : 0;
 	new->y = cord[2] ? ft_atoi(cord[2]) : 0;
 	new->end = start_end == -1 ? 1 : 0;

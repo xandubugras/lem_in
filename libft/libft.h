@@ -229,6 +229,8 @@ char			*ft_strtrim(char const *s);
 
 char			**ft_strsplit(char const *s, char c);
 
+void			free_split_str(char **splt);
+
 int				get_word_len(char const *str, char c);
 
 int				ft_countwords(char const *str, char c);

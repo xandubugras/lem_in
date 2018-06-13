@@ -25,12 +25,10 @@ int	find_start_end(t_room **start, t_room **end, t_room **rooms)
 		}
 		i++;
 	}
-	(*end)->prev = *start;
-	(*start)->next = *end;
 	return (0);
 }
 
-int	bfs_graph(t_room *start, int **room_graph, t_room **rooms, t_queue *q)
+static int	bfs_graph(t_room *start, int **room_graph, t_room **rooms, t_queue *q)
 {
 	int	i;
 
@@ -56,11 +54,10 @@ int	bfs_graph(t_room *start, int **room_graph, t_room **rooms, t_queue *q)
 	return (0);
 }
 
-int	backtrack_path(t_room **rooms, int i, t_room *end, int size)
+static int	backtrack_path(t_room **rooms, int i, t_room *end, int size)
 {
 	if (!end || !rooms || i < 0)
 		return (-1);
-	//ft_printf("%s-", rooms[i]->room_name);
 	size++;
 	if (rooms[i]->len == 0)
 		rooms[i]->len = size;
@@ -76,7 +73,7 @@ int	backtrack_path(t_room **rooms, int i, t_room *end, int size)
 		return (rooms[i]->code);
 }
 
-int	*write_paths(t_room **rooms, t_room *end)
+static int	*write_paths(t_room **rooms, t_room *end)
 {
 	int	i;
 	int	*paths;
@@ -133,6 +130,6 @@ int	*find_paths(int **room_graph, t_room **rooms)
 	paths = write_paths(rooms, end);
 	if (check_paths(paths))
 		return ((ft_printf_err_zero("No possible solution\n")));
-	//ft_printf("start: %s end: %s\n", start->room_name, end->room_name);
+	free(q);
 	return (paths);
 }

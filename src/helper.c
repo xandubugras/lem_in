@@ -29,3 +29,24 @@ int		check_paths(int *paths)
 		return (1);
 	return (0);
 }
+
+int		handle_empty_str(char *str, char *tmp)
+{
+	if (!str)
+	{
+		free(tmp);
+		return (1);
+	}
+	return (0);
+}
+
+int		free_tmp_str_split(char **splt, char *str, char *tmp)
+{
+	if (splt)
+		free_split_str(splt);
+	if (str)
+		free(str);
+	if (tmp)
+		free(tmp);
+	return (1);
+}
